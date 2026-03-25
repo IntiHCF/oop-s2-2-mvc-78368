@@ -1,0 +1,50 @@
+﻿@model List<IdentityUser>
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+<h2>Admin User Management</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            var roles = await UserManager.GetRolesAsync(user);
+            <tr>
+                <td>@user.Email</td>
+                <td>@string.Join(", ", roles)</td>
+                <td>
+                    <form asp-action="AddRole" method="post" style="display:inline">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <select name="role" class="form-select d-inline w-auto">
+                            @foreach (var role in RoleManager.Roles)
+                            {
+                                <option value="@role.Name">@role.Name</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-success">Add</button>
+                    </form>
+
+                    <form asp-action="RemoveRole" method="post" style="display:inline">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <select name="role" class="form-select d-inline w-auto">
+                            @foreach (var role in RoleManager.Roles)
+                            {
+                                <option value="@role.Name">@role.Name</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<oop_s2_2_mvc_78368.Models.Inspection>
+
+<h1 class="mb-4">Inspections</h1>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Premises</th>
+            <th>Date</th>
+            <th>Score</th>
+            <th>Outcome</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Premises?.Name</td>
+                <td>@i.InspectionDate.ToShortDateString()</td>
+                <td>@i.Score</td>
+                <td>@i.Outcome</td>
+                <td>@i.Notes</td>
+            </tr>
+        }
+    </tbody>
+</table>
