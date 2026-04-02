@@ -1,0 +1,32 @@
+﻿@model oop_s2_2_mvc_78368.Models.FollowUp
+
+<h2>Edit Follow-Up</h2>
+
+<form asp-action="Edit" method="post" class="card p-4">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Inspection</label>
+        <input asp-for="InspectionId" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Due Date</label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Status</label>
+        <select asp-for="Status" class="form-control">
+            <option>Open</option>
+            <option>Closed</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Closed Date</label>
+        <input asp-for="ClosedDate" type="date" class="form-control" />
+    </div>
+
+    <button class="btn btn-success">Save</button>
+</form>

@@ -1,24 +1,44 @@
-﻿@model Inspection
+﻿@model oop_s2_2_mvc_78368.Models.Inspection
+
+@{
+    ViewData["Title"] = "Create Inspection";
+}
 
 <h1>Create Inspection</h1>
 
 <form asp-action="Create" method="post">
-    <input type="hidden" asp-for="PremisesId" />
+    <div class="mb-3">
+        <label asp-for="PremisesId" class="form-label">Premises</label>
+        <select asp-for="PremisesId" class="form-select">
+            @foreach (var premise in ViewBag.PremisesList)
+            {
+                <option value="@premise.Id">@premise.Name (@premise.Town)</option>
+            }
+        </select>
+    </div>
 
-    <label>Inspection Date:</label>
-    <input asp-for="InspectionDate" type="date" /><br />
+    <div class="mb-3">
+        <label asp-for="InspectionDate" class="form-label">Inspection Date</label>
+        <input asp-for="InspectionDate" class="form-control" type="date" />
+    </div>
 
-    <label>Score:</label>
-    <input asp-for="Score" type="number" min="0" max="100" /><br />
+    <div class="mb-3">
+        <label asp-for="Score" class="form-label">Score</label>
+        <input asp-for="Score" class="form-control" type="number" min="0" max="100" />
+    </div>
 
-    <label>Outcome:</label>
-    <select asp-for="Outcome">
-        <option value="Pass">Pass</option>
-        <option value="Fail">Fail</option>
-    </select><br />
+    <div class="mb-3">
+        <label asp-for="Outcome" class="form-label">Outcome</label>
+        <select asp-for="Outcome" class="form-select">
+            <option value="Pass">Pass</option>
+            <option value="Fail">Fail</option>
+        </select>
+    </div>
 
-    <label>Notes:</label>
-    <textarea asp-for="Notes"></textarea><br />
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label">Notes</label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+    </div>
 
-    <button type="submit">Create</button>
+    <button type="submit" class="btn btn-success">Create</button>
 </form>

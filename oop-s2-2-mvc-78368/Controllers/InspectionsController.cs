@@ -20,6 +20,7 @@ namespace oop_s2_2_mvc_78368.Controllers
             _logger = logger;
         }
 
+
         [Authorize(Roles = "Admin,Inspector")]
         public async Task<IActionResult> Index()
         {
@@ -27,6 +28,13 @@ namespace oop_s2_2_mvc_78368.Controllers
                 .Include(i => i.Premises) // include related Premises for display
                 .ToListAsync();
             return View(inspections);
+        }
+
+        [Authorize(Roles = "Admin,Inspector")]
+        public IActionResult Create()
+        {
+            ViewBag.PremisesList = _context.Premises.ToList();
+            return View();
         }
 
         [HttpPost]

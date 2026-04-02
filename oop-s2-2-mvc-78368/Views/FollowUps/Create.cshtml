@@ -1,21 +1,39 @@
-﻿@model FollowUp
+﻿@model oop_s2_2_mvc_78368.Models.FollowUp
+
+@{
+    ViewData["Title"] = "Create Follow-Up";
+}
 
 <h1>Create Follow-Up</h1>
 
 <form asp-action="Create" method="post">
-    <input type="hidden" asp-for="InspectionId" />
+    <div class="mb-3">
+        <label asp-for="InspectionId" class="form-label">Inspection</label>
+        <select asp-for="InspectionId" class="form-select">
+            @foreach (var insp in ViewBag.InspectionList)
+            {
+                <option value="@insp.Id">@insp.Premises.Name - @insp.InspectionDate.ToShortDateString()</option>
+            }
+        </select>
+    </div>
 
-    <label>Due Date:</label>
-    <input asp-for="DueDate" type="date" /><br />
+    <div class="mb-3">
+        <label asp-for="DueDate" class="form-label">Due Date</label>
+        <input asp-for="DueDate" class="form-control" type="date" />
+    </div>
 
-    <label>Status:</label>
-    <select asp-for="Status">
-        <option value="Open">Open</option>
-        <option value="Closed">Closed</option>
-    </select><br />
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label">Status</label>
+        <select asp-for="Status" class="form-select">
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
+        </select>
+    </div>
 
-    <label>Closed Date (if closing):</label>
-    <input asp-for="ClosedDate" type="date" /><br />
+    <div class="mb-3">
+        <label asp-for="ClosedDate" class="form-label">Closed Date (if applicable)</label>
+        <input asp-for="ClosedDate" class="form-control" type="date" />
+    </div>
 
-    <button type="submit">Create</button>
+    <button type="submit" class="btn btn-success">Create</button>
 </form>
