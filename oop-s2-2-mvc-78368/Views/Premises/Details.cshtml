@@ -1,0 +1,13 @@
+﻿@model oop_s2_2_mvc_78368.Models.Premises
+@{
+    ViewData["Title"] = "Premises Details";
+}
+
+<h1>Premises Details</h1>
+
+<div class="mb-3"><strong>Name:</strong> @Model.Name</div>
+<div class="mb-3"><strong>Address:</strong> @Model.Address</div>
+<div class="mb-3"><strong>Town:</strong> @Model.Town</div>
+<div class="mb-3"><strong>Risk Rating:</strong> @Model.RiskRating</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back to Premises</a>
